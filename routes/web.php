@@ -4,9 +4,26 @@ use App\Models\{
     User,
     Preference,
     Course,
-    Permission
+    Permission,
+    Image
 };
 use Illuminate\Support\Facades\Route;
+
+Route::get('/one-to-one-polymorphic', function () {
+    $user = User::first();
+
+    $data = ['path' => 'path/nome-image-02.png'];
+
+    if ($user->image) {
+        $user->image()->update($data);
+    } else {
+        $user->image()->create($data);
+    }
+
+    // $user->image->delete();
+
+    dd($user->image->path);
+});
 
 Route::get('/many-to-many-pivot', function () {
     $user = User::with('permissions')->find(8);
