@@ -13,6 +13,7 @@ Temas de estudo abordados no curso
 
 - Relacionamentos de tabela
     - One to one
+    - One to many e inverso
     - Many to many
     - Many to many pivô
 - Relacionamento Polimórficos
