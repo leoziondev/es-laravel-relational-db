@@ -3,9 +3,29 @@
 use App\Models\{
     User,
     Preference,
-    Course
+    Course,
+    Permission
 };
 use Illuminate\Support\Facades\Route;
+
+Route::get('/many-to-many', function () {
+    // dd(Permission::create(['name' => 'menu_03']));
+    $user = User::with('permissions')->find(5);
+
+    $permission = Permission::first();
+    // $user->permissions()->save($permission);
+    // $user->permissions()->saveMany([
+    //     Permission::find(1),
+    //     Permission::find(3),
+    // ]);
+    // $user->permissions()->sync([1]);
+    // $user->permissions()->attach([3]);
+    $user->permissions()->detach([1,3]);
+
+    $user->refresh();
+
+    dd($user->permissions);
+});
 
 Route::get('/one-to-many', function () {
     // $course = Course::create(['name' => 'Curso de Laravel']);
