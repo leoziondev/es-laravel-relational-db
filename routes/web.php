@@ -8,6 +8,20 @@ use App\Models\{
 };
 use Illuminate\Support\Facades\Route;
 
+Route::get('/many-to-many-pivot', function () {
+    $user = User::with('permissions')->find(8);
+
+    // $user->permissions()->attach([
+    //     1 => ['active' => false],
+    //     3 => ['active' => false],
+    // ]);
+
+    echo "<b>{$user->name}</b><br>";
+    foreach($user->permissions as $permission) {
+        echo "{$permission->name} - {$permission->pivot->active} <br>";
+    }
+});
+
 Route::get('/many-to-many', function () {
     // dd(Permission::create(['name' => 'menu_03']));
     $user = User::with('permissions')->find(5);
