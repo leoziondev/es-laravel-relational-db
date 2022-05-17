@@ -6,9 +6,26 @@ use App\Models\{
     Course,
     Permission,
     Image,
-    Comment
+    Comment,
+    Tag
 };
 use Illuminate\Support\Facades\Route;
+
+Route::get('/many-to-many-polymorphic', function () {
+    // $course = Course::first();
+    // Tag::create(['name' => 'tag1', 'color' => 'blue']);
+    // Tag::create(['name' => 'tag2', 'color' => 'red']);
+    // Tag::create(['name' => 'tag3', 'color' => 'green']);
+
+    // $course->tags()->attach(3);
+
+    // dd($course->tags);
+
+    $tag = Tag::find(1);
+    // $tag = Tag::where('name', 'tag3')->first();
+
+    dd($tag->courses);
+});
 
 Route::get('/one-to-many-polymorphic', function () {
     // $course = Course::first();
